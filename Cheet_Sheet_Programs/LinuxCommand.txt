@@ -1,0 +1,198 @@
+
+Script for counting occurances of systemd in /var/log directory
+*************************************************************************************************************************
+ls /var/log | grep -c systemd
+***********************************************************************************************************************
+OUTPUT:-
+0
+**************************************************************************************************************************
+**************************************************************************************************************************
+
+#Script for archive files from folder which have modified 7 days ago & move it to backup folder 
+************************************************************************************
+# find /var/log -mtime +7 -type f -exec ls {}\;
+/Kirti/linux-content$ mv /var/log backup/
+
+****************************************************************************************************************************
+****************************************************************************************************************************
+4.Script for first 4 frequently access urls count in sorted order
+
+ cat access.log | awk '{print $11}'| sort | uniq -c | sort -rn | head -4
+   1475 "https://fundoopush-dev.bridgelabz.com/login"
+   1141 "https://fundoopush-dev.bridgelabz.com/dashboard/article"
+    377 "-"
+    176 "https://fundoopush-dev.bridgelabz.com/add-post"
+
+
+****************************************************************************************************************************
+5. Print list of script for last 4 frequently access urls count in sorted order 
+
+cat access.log | awk '{print $11}'| sort | uniq -c | sort -rn | tail -4.log 
+
+ 4 "http://fundoopush-dev.bridgelabz.com/wp-login.php"
+      2 "http://fundoopush-dev.bridgelabz.com/.well-known/acme-challenge/4xM-Y1899BrBIJ76P5Er2sj2VhEtyi_DFvfo6xiMXXw"
+      1 "https://fundoopush-dev.bridgelabz.com/dashboard/hashtags/animals"
+      1 "https://fundoopush-dev.bridgelabz.com/dashboard/archive"
+
+
+ . Print list of web response code count in the unique sorted order at specific hours
+*****************************************************************************************************************************
+
+OUTPUT:- awk '{print $9}' access.log | sort | uniq -c | sort -rn
+*****************************************************************************************************************************
+*****************************************************************************************************************************
+7. Print list of last 10 unique sorted client IP from /var/log/httpd/accesss.log
+
+
+****************************************************************************************************************************
+******************************************************************************************************************************************
+11. Find a word “systemd” from all log files in the folder /var/log and print number of occurrence more than 0 against each file.
+***********************************************************************************************************************************
+ ls /var/log | grep -c systemd
+
+*****************************************************************************************************************************************
+OUTPUT:- 0
+*****************************************************************************************************************************
+************************************************************************************************************************************************
+12. Create process list table displays process id, parent process id, command name,% of memory consumption ,% of cpu utilization
+*******************************************************************************************************************************
+ps -elf | awk '{print $4, $5, $15, $12, $8}' | head -10 | column -t
+
+
+********************************************************************************************************************************************************
+OUTPUT:-
+
+	PID  PPID  CMD             	STIME 	 NI
+	1    0     /sbin/init      	08:59 	 0
+	2    0     [kthreadd]      	08:59 	 0
+	4    2     [kworker/0:0H]  	08:59 	-20
+	6    2     [mm_percpu_wq]  	08:59 	-20
+	7    2     [ksoftirqd/0]   	08:59 	 0
+	8    2     [rcu_sched]     	08:59 	 0
+	9    2     [rcu_bh]        	08:59  	 0
+	10   2     [migration/0]   	08:59  	 -
+	11   2     [watchdog/0]    	08:59  	 -
+****************************************************************************************************************************
+***************************************************************************************************************************************
+*********************************************************************************************************************
+14.Find difference between original file and updated file.Apply changes to original file
+
+diff options original/ updated/
+
+diff updated/ original-backup/
+
+OUTPUT:-
+Only in original/: original.sh
+Only in updated/: updated.sh
+Only in original-backup/: original
+Only in updated/: updated.sh
+
+***************************************************************************************************************************
+***********************************************************************************************************************************************************
+Script for print specific columns in of running process
+********************************************************************************************************************
+ps -elf | awk '{print $4, $5, $15, $12, $8}' | head -10 | column t
+
+******************************************************************************************************************** 
+i
+
+PID  PPID  CMD             STIME NI
+1    0     /sbin/init       08:59 0
+2    0     [kthreadd]       08:59 0
+4    2     [kworker/0:0H]   08:59 -20
+6    2     [mm_percpu_wq]   08:59 -20
+7    2     [ksoftirqd/0]   08:59 0
+8    2     [rcu_sched]     08:59 0
+9    2     [rcu_bh]         08:59   0
+10   2     [migration/0]   08:59   -
+11   2     [watchdog/0]     08:59   -
+
+********************************************************************************************************************
+1. Script for Employee name and Total Salary whose BasePay is > 10000
+
+********************************************************************************************************************
+cat data.csv  | awk '$4 > 10000 {print $2, $7}'| column -t
+
+********************************************************************************************************************
+
+OUTPUT
+
+
+EmployeeName  TotalPay
+NATHANIEL     567595
+GARY          538909
+ALBERT        335279
+CHRISTOPHER   332343
+PATRICK       326373
+DAVID         316285
+ALSON         315981
+DAVID         307899
+JOANNE        302377
+PATRICIA      297608
+EDWARD        294580
+
+
+********************************************************************************************************************************************
+
+2.Select Employee where job title is CAPTAIN,
+calculate sum of its total pay print it
+
+********************************************************************************************************************************************
+cat data.csv |grep CAPTAIN | awk '{sum+=$7}END {print sum}'
+
+*******************************************************************************************************************************************
+
+OUTPUT
+
+1171796
+
+
+************************************************************************************************************************************************
+
+3. Print Jobtitle and and Overtime pay
+where overtime pay is in between 7000 & 10000
+
+********************************
+
+cat data.csv  | awk '{if ($5 > 7000 && $5 < 10000) print $3, $5}'
+
+********************************
+
+OUTPUT
+
+DEPUTYCHIEF 9737
+ASSTDEPUTY 8601
+
+
+************************************************************************************************************************************************
+
+#Script for archive files from folder which have modified 7 days ago & move it to backup folder 
+
+# find /var/log -mtime +7 -type f -exec ls {}\;
+/Kirti/linux-content$ mv /var/log backup/
+
+
+
+
+
+************************************************************************
+************************************************************************
+#Script for first 4 frequently access urls count in sorted order
+
+ cat access.log | awk '{print $11}'| sort | uniq -c | sort -rn | head -4
+   1475 "https://fundoopush-dev.bridgelabz.com/login"
+   1141 "https://fundoopush-dev.bridgelabz.com/dashboard/article"
+    377 "-"
+    176 "https://fundoopush-dev.bridgelabz.com/add-post"
+
+
+********************************
+#Script for last 4 frequently access urls count in sorted order 
+
+cat access.log | awk '{print $11}'| sort | uniq -c | sort -rn | tail -4
+
+ 4 "http://fundoopush-dev.bridgelabz.com/wp-login.php"
+      2 "http://fundoopush-dev.bridgelabz.com/.well-known/acme-challenge/4xM-Y1899BrBIJ76P5Er2sj2VhEtyi_DFvfo6xiMXXw"
+      1 "https://fundoopush-dev.bridgelabz.com/dashboard/hashtags/animals"
+      1 "https://fundoopush-dev.bridgelabz.com/dashboard/archive"
+
